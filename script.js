@@ -2,6 +2,9 @@ const input = document.querySelector("#link");
 const btn = document.querySelector("#submitBtn");
 const encodedParams = new URLSearchParams();
 const linkArea = document.querySelector("#linkArea");
+const btnsCopy = document.querySelector('#btnCopy');
+
+
 const options = {
   method: "POST",
   headers: {
@@ -14,7 +17,7 @@ const options = {
 
 let getUrls = localStorage.getItem('urlShort')
 
-linkArea.innerHTML += !getUrls ? '' : getUrls;
+linkArea.innerHTML = !getUrls ? '' : getUrls;
 
 
 
@@ -27,6 +30,7 @@ const handleBtn = (e) => {
     return console.log("Vazio");
   }
 
+
   input.classList.remove("empty");
 
   encodedParams.append("url", input.value);
@@ -37,6 +41,7 @@ const handleBtn = (e) => {
       let shortUrl = response.result_url;
 
       const box = document.createElement('div')
+      box.id='btnCopy';
       box.classList.add('box')
 
       const left = document.createElement('div')
@@ -64,7 +69,7 @@ const handleBtn = (e) => {
 
       linkArea.appendChild(box)
 
-      localStorage.setItem('urlShort', linkArea.outerHTML)
+      localStorage.setItem('urlShort', linkArea.innerHTML)
 
 
       input.value = "";
