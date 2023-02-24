@@ -14,7 +14,7 @@ const options = {
 
 let getUrls = localStorage.getItem('urlShort')
 
-linkArea.innerHTML += getUrls
+linkArea.innerHTML += !getUrls ? '' : getUrls;
 
 
 
