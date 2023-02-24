@@ -146,13 +146,24 @@ button a {
   padding: 8px 25px;
   border-radius: 20px;
 }
-.btnType a:hover, .btnType:hover,
+.btnType a:hover, .btnType a:hover a, .btnType:hover, .btnType:hover a,
 .btnType a:hover,
+.btnType a:hover a,
 button a:hover,
+button a:hover a,
 button:hover,
-button a:hover {
+button:hover a,
+button a:hover,
+button a:hover a {
   color: #fff;
   background-color: #97e2de;
+}
+.btnType a.copied, .btnType.copied,
+.btnType a.copied,
+button a.copied,
+button.copied,
+button a.copied {
+  background-color: #3a3053;
 }
 
 section {
@@ -301,6 +312,7 @@ section.grey .content .linkArea .box .right p {
 section.grey .content .linkArea .box .right button {
   margin-left: 25px;
   border-radius: 8px;
+  transition: all 200ms linear;
 }
 section.grey .content .statistics {
   width: 100%;

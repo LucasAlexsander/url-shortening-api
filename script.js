@@ -19,7 +19,16 @@ linkArea.innerHTML = !getUrls ? "" : getUrls;
 
 let btnsCopy = document.querySelectorAll("#btnCopy");
 
-console.log(btnsCopy);
+btnsCopy.forEach(btn => {
+    let button = btn.children[1].children[1];
+
+    if(button.className == "copied") {
+        button.classList.remove('copied')
+        button.innerHTML = 'Copy'
+    }
+    console.log(button.className);
+});
+
 
 const handleBtn = (e) => {
   e.preventDefault();
@@ -72,6 +81,10 @@ const handleBtn = (e) => {
 
       btnsCopy = document.querySelectorAll("#btnCopy");
 
+      btnsCopy.forEach((btn) => {
+        btn.addEventListener("click", handleCopy);
+      });
+
       input.value = "";
     })
     .catch((err) => console.error(err));
@@ -79,13 +92,31 @@ const handleBtn = (e) => {
 
 btn.addEventListener("click", handleBtn);
 
+async function handleCopy(e) {
+  let copy = e.srcElement.offsetParent.children[1].children[0].innerHTML;
 
-async function handleCopy (e) {
+  await navigator.clipboard.writeText(copy);
 
-    let copy = e.srcElement.offsetParent.children[1].children[0].innerHTML;
-    await navigator.clipboard.writeText(copy)
+  btnsCopy.forEach((btn) => {
+    let button = btn.children[1].children[1];
+    if (button.className == "copied") {
+      console.log(button);
+      button.innerHTML = "Copy";
+      button.classList.remove("copied");
+    }
+  });
+
+  e.target.classList.add("copied");
+  e.target.innerHTML = "Copied!";
+
+  setTimeout(() => {
+    e.target.innerHTML = "Copy"
+    e.target.classList.remove("copied")
+  }, 2000);
+
+
 }
 
-btnsCopy.forEach(btn => {
-    btn.addEventListener('click', handleCopy)
+btnsCopy.forEach((btn) => {
+  btn.addEventListener("click", handleCopy);
 });

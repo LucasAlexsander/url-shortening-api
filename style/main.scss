@@ -75,9 +75,14 @@ button {
     padding: 8px 25px;
     border-radius: 20px;
 
-    &:hover {
+    &:hover,
+    &:hover a {
       color: #fff;
       background-color: #97e2de;
+    }
+
+    &.copied {
+      background-color: #3a3053;
     }
   }
 }
@@ -213,15 +218,14 @@ section {
           margin-bottom: 16px;
           animation: create 500ms linear both;
 
-
           @keyframes create {
             from {
-                transform: translateX(-140px);
-                opacity: 0;
+              transform: translateX(-140px);
+              opacity: 0;
             }
             to {
-                transform: translateX(0);
-                opacity: 1;
+              transform: translateX(0);
+              opacity: 1;
             }
           }
 
@@ -240,6 +244,7 @@ section {
             button {
               margin-left: 25px;
               border-radius: 8px;
+              transition: all 200ms linear;
             }
           }
         }
