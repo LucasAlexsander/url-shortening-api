@@ -2,8 +2,6 @@ const input = document.querySelector("#link");
 const btn = document.querySelector("#submitBtn");
 const encodedParams = new URLSearchParams();
 const linkArea = document.querySelector("#linkArea");
-const btnsCopy = document.querySelector('#btnCopy');
-
 
 const options = {
   method: "POST",
@@ -15,11 +13,13 @@ const options = {
   body: encodedParams,
 };
 
-let getUrls = localStorage.getItem('urlShort')
+let getUrls = localStorage.getItem("urlShort");
 
-linkArea.innerHTML = !getUrls ? '' : getUrls;
+linkArea.innerHTML = !getUrls ? "" : getUrls;
 
+let btnsCopy = document.querySelectorAll("#btnCopy");
 
+console.log(btnsCopy);
 
 const handleBtn = (e) => {
   e.preventDefault();
@@ -30,7 +30,6 @@ const handleBtn = (e) => {
     return console.log("Vazio");
   }
 
-
   input.classList.remove("empty");
 
   encodedParams.append("url", input.value);
@@ -40,37 +39,38 @@ const handleBtn = (e) => {
     .then((response) => {
       let shortUrl = response.result_url;
 
-      const box = document.createElement('div')
-      box.id='btnCopy';
-      box.classList.add('box')
+      const box = document.createElement("div");
+      box.id = "btnCopy";
+      box.classList.add("box");
 
-      const left = document.createElement('div')
-      left.classList.add('left')
+      const left = document.createElement("div");
+      left.classList.add("left");
 
-      const pLeft = document.createElement('p')
-      pLeft.innerHTML = input.value
+      const pLeft = document.createElement("p");
+      pLeft.innerHTML = input.value;
 
-      left.appendChild(pLeft)
-      box.appendChild(left)
+      left.appendChild(pLeft);
+      box.appendChild(left);
 
-      const right = document.createElement('div')
-      right.classList.add('right')
+      const right = document.createElement("div");
+      right.classList.add("right");
 
-      const pRight = document.createElement('p')
-      pRight.innerHTML = shortUrl
+      const pRight = document.createElement("p");
+      pRight.innerHTML = shortUrl;
 
-      const btnRight = document.createElement('button')
-      btnRight.innerHTML = 'Copy'
+      const btnRight = document.createElement("button");
+      btnRight.innerHTML = "Copy";
 
-      right.appendChild(pRight)
-      right.appendChild(btnRight)
+      right.appendChild(pRight);
+      right.appendChild(btnRight);
 
-      box.appendChild(right)
+      box.appendChild(right);
 
-      linkArea.appendChild(box)
+      linkArea.appendChild(box);
 
-      localStorage.setItem('urlShort', linkArea.innerHTML)
+      localStorage.setItem("urlShort", linkArea.innerHTML);
 
+      btnsCopy = document.querySelectorAll("#btnCopy");
 
       input.value = "";
     })
@@ -78,3 +78,14 @@ const handleBtn = (e) => {
 };
 
 btn.addEventListener("click", handleBtn);
+
+
+async function handleCopy (e) {
+
+    let copy = e.srcElement.offsetParent.children[1].children[0].innerHTML;
+    await navigator.clipboard.writeText(copy)
+}
+
+btnsCopy.forEach(btn => {
+    btn.addEventListener('click', handleCopy)
+});
