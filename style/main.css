@@ -276,11 +276,11 @@ section.grey .content .linkArea .box {
   background: white;
   border-radius: 8px;
   margin-bottom: 16px;
-  animation: create 200ms linear both;
+  animation: create 500ms linear both;
 }
 @keyframes create {
   from {
-    transform: translateX(-30px);
+    transform: translateX(-140px);
     opacity: 0;
   }
   to {
