@@ -3,6 +3,7 @@
 @import "base";
 
 header {
+  position: relative;
   width: 1110px;
   height: 40px;
   display: flex;
@@ -15,44 +16,144 @@ header {
     align-items: center;
 
     .logo {
-      display: grid;
-      place-items: center;
-      margin-right: 45px;
-      cursor: pointer;
-    }
-  }
-
-  nav {
-    height: 40px;
-    display: grid;
-    place-items: center;
-    ul {
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-right: 45px;
+      cursor: pointer;
 
-      li {
-        height: 100%;
+      a {
         display: grid;
         place-items: center;
-        list-style: none;
+      }
+    }
+  }
 
-        a {
-          text-decoration: none;
-          color: #9c9ba1;
-          font-size: 15px;
-          margin-right: 30px;
-          font-weight: 700;
+  .left {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 
-          &:hover {
-            color: #18171d;
+    nav {
+      height: 40px;
+      display: grid;
+      place-items: center;
+      ul {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        li {
+          height: 100%;
+          display: grid;
+          place-items: center;
+          list-style: none;
+
+          a {
+            text-decoration: none;
+            color: #9c9ba1;
+            font-size: 15px;
+            margin-right: 30px;
+            font-weight: 700;
+
+            &:hover {
+              color: #18171d;
+            }
+          }
+
+          &:last-child a {
+            margin-right: 0;
           }
         }
+      }
+    }
+  }
 
-        &:last-child a {
-          margin-right: 0;
+  .hamburguerMenu {
+    display: none;
+  }
+
+  @media (max-width: 500px) {
+    width: 327px;
+    margin-bottom: 50px;
+    position: relative;
+
+
+    .left {
+      position: absolute;
+      width: 327px;
+      height: 384px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #3a3053;
+      border-radius: 10px;
+      top: 100px;
+      z-index: 1;
+      transform: translateY(-150%);
+      transition: transform 500ms ease-in-out;
+
+      .info {
+        position: relative;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        nav {
+          height: 100%;
         }
+      }
+
+      .line {
+        width: 80%;
+        height: 1px;
+        background-color: #544a6d;
+      }
+
+      nav {
+        width: 100%;
+        height: 57%;
+        padding: 25px 0;
+
+        ul {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+
+          li {
+            a {
+              font-size: 18px;
+              color: #fff;
+              font-weight: bold;
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    .hamburguerMenu {
+      width: 40px;
+      height: 25px;
+      display: flex;
+      right: 0;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+
+      &.open + .left {
+        display: flex;
+        transform: translateY(0);
+      }
+
+      span {
+        width: 80%;
+        height: 4px;
+        background: #9b99a4;
       }
     }
   }
@@ -129,8 +230,11 @@ section {
     }
 
     .bg {
+      width: 600px;
+      height: 500px;
+      background: url(../images/illustration-working.svg);
       position: absolute;
-      right: -300px;
+      right: -20%;
     }
   }
 
@@ -341,6 +445,159 @@ section {
       font-size: 38px;
       color: #fff;
       margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    overflow-x: hidden;
+    margin-bottom: 0px;
+
+    .content {
+      width: 327px;
+      height: 730px;
+      height: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      margin-bottom: 35px;
+
+      .text {
+        grid-row: 2/3;
+        width: 100%;
+        padding-right: 0;
+        align-items: center;
+        justify-content: start;
+        margin-top: 60px;
+
+        h1 {
+          text-align: center;
+          font-size: 40px;
+        }
+        p {
+          text-align: center;
+        }
+      }
+
+      .bg {
+        grid-row: 1;
+        width: 500px;
+        height: 330px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    &.grey {
+      overflow-x: visible;
+
+      .content {
+
+        form {
+          height: 182px;
+          flex-direction: column;
+          background: url(../images/bg-shorten-mobile.svg) right top no-repeat;
+          background-color: #3a3053;
+          justify-content: space-around;
+          padding: 10px 23px;
+  
+          input {
+            width: 100%;
+            padding-left: 13px;
+          }
+  
+          span {
+            font-size: 13px;
+            left: 30px;
+            bottom: calc(168px / 2);
+          }
+  
+          button {
+            width: 100%;
+            margin-left: 0;
+          }
+        }
+  
+        .linkArea .box {
+          align-items: start;
+          flex-direction: column;
+          height: 156px;
+          
+          .left {
+            position: relative;
+            width: 100%;
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: 327px;
+              height: .5px;
+              background: #E5E5E5;
+              bottom: -10px;
+              left: -24px;
+            }
+          }
+  
+          .right {
+            width: 100%;
+            height: 60%;
+            align-items: start;
+            justify-content: space-between;
+            flex-direction: column;
+            button {
+              width: 100%;
+              margin-left: 0;
+            }
+          }
+        }
+
+        .statistics {
+          padding: 0;
+        }
+
+        .cardsArea {
+          height: auto;
+          flex-direction: column;
+
+          .card {
+            margin-bottom: 90px;
+
+            .icon {
+              left: auto;
+            }
+
+            .info {
+              text-align: center;
+            }
+
+            &:first-child {
+              align-self: center;
+            }
+            &:last-child {
+              align-self: center;
+            }
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: 10px;
+              height: 50px;
+              background: #2ed2d4;
+              bottom: -50px;
+            }
+
+            &:last-child::after {
+              display: none;
+            }
+          }
+
+          .line {
+            display: none;
+            width: 10px;
+            height: 50px;
+          }
+        }
+      }
     }
   }
 }

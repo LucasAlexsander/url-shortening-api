@@ -2,6 +2,7 @@ const input = document.querySelector("#link");
 const btn = document.querySelector("#submitBtn");
 const encodedParams = new URLSearchParams();
 const linkArea = document.querySelector("#linkArea");
+const menu = document.querySelector('#menu');
 
 const options = {
   method: "POST",
@@ -15,20 +16,18 @@ const options = {
 
 let getUrls = localStorage.getItem("urlShort");
 
-linkArea.innerHTML = !getUrls ? "" : getUrls;
+//linkArea.innerHTML = !getUrls ? "" : getUrls;
 
 let btnsCopy = document.querySelectorAll("#btnCopy");
 
-btnsCopy.forEach(btn => {
-    let button = btn.children[1].children[1];
+btnsCopy.forEach((btn) => {
+  let button = btn.children[1].children[1];
 
-    if(button.className == "copied") {
-        button.classList.remove('copied')
-        button.innerHTML = 'Copy'
-    }
-    console.log(button.className);
+  if (button.className == "copied") {
+    button.classList.remove("copied");
+    button.innerHTML = "Copy";
+  }
 });
-
 
 const handleBtn = (e) => {
   e.preventDefault();
@@ -106,17 +105,25 @@ async function handleCopy(e) {
     }
   });
 
-  e.target.classList.add("copied");
-  e.target.innerHTML = "Copied!";
+  if (e.srcElement.localName == "button") {
+    e.target.classList.add("copied");
+    e.target.innerHTML = "Copied!";
 
-  setTimeout(() => {
-    e.target.innerHTML = "Copy"
-    e.target.classList.remove("copied")
-  }, 2000);
-
-
+    setTimeout(() => {
+      e.target.innerHTML = "Copy";
+      e.target.classList.remove("copied");
+    }, 2000);
+  }
 }
 
 btnsCopy.forEach((btn) => {
   btn.addEventListener("click", handleCopy);
 });
+
+
+menu.onclick = () => {
+  if(!menu.className.match('open')) {
+    return menu.classList.add('open')
+  }
+  menu.classList.remove('open')
+}

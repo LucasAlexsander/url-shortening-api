@@ -14,7 +14,6 @@ body {
   align-items: center;
   flex-direction: column;
   padding-top: 48px;
-  overflow-x: hidden;
 }
 
 footer {
@@ -85,6 +84,36 @@ footer {
 
       div:last-child ul li {
         margin-right: 0;
+      }
+    }
+  }
+
+  @media (max-width: 500px) {;
+    height: 776px;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+
+    .content {
+      width: 327px;
+      height: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+
+      .otherLinks {
+        flex-direction: column;
+
+        div {
+          width: 100%;
+          text-align: center;
+
+          ul {
+            li {
+              margin-right: 0;
+            }
+          }
+        }
       }
     }
   }
