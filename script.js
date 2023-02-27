@@ -16,9 +16,9 @@ const options = {
 
 let getUrls = localStorage.getItem("urlShort");
 
-//linkArea.innerHTML = !getUrls ? "" : getUrls;
+linkArea.innerHTML = !getUrls ? "" : getUrls;
 
-let btnsCopy = document.querySelectorAll("#btnCopy");
+let btnsCopy = document.querySelectorAll(".btnCopy");
 
 btnsCopy.forEach((btn) => {
   let button = btn.children[1].children[1];
@@ -48,7 +48,7 @@ const handleBtn = (e) => {
       let shortUrl = response.result_url;
 
       const box = document.createElement("div");
-      box.id = "btnCopy";
+      box.classList.add("btnCopy");
       box.classList.add("box");
 
       const left = document.createElement("div");
